@@ -19,13 +19,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/', recherchesRouter);
 
-const pool = mariadb.createPool({
-  host: config.mariadb.host,
-  user: config.mariadb.user,
-  connectionLimit: config.mariadb.connectionLimit
+// const pool = mariadb.createPool({
+//   host: config.mariadb.host,
+//   user: config.mariadb.user,
+//   password: config.mariadb.password,
+//   connectionLimit: config.mariadb.connectionLimit
+// });
+
+app.use(function(req, res, next) {
+  // req.pool = pool;
+  next();
 });
+
+app.use('/', recherchesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -41,13 +48,6 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
-});
-
-app.use(function(req, res, next) {
-  console.log('Time:', Date.now());
-  console.log('pool');
-  req.pool = pool;
-  next();
 });
 
 module.exports = app;
