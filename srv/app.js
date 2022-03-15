@@ -20,15 +20,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// const pool = mariadb.createPool({
-//   host: config.mariadb.host,
-//   user: config.mariadb.user,
-//   password: config.mariadb.password,
-//   connectionLimit: config.mariadb.connectionLimit
-// });
+const pool = mariadb.createPool({
+  host: config.mariadb.host,
+  user: config.mariadb.user,
+  password: config.mariadb.password,
+  connectionLimit: config.mariadb.connectionLimit,
+  database: config.mariadb.db,
+});
 
 app.use(function(req, res, next) {
-  // req.pool = pool;
+  req.pool = pool;
   next();
 });
 
