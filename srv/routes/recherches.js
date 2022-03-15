@@ -9,7 +9,7 @@ const recherche = async (req, res) => {
         const test = await query(req, {
             sql: 'select * from sites;'
         });
-        const test1 = await search("thomas");
+        const test1 = await search("wikipédia");
         res.send(test1);
     } catch(err) {
         console.error(err);

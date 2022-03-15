@@ -44,17 +44,17 @@ module.exports = async (recherche) => {
             // Iterate over all the divs with class 'g'
             gCount.forEach(result => {
                 //Target the title
-                const title = result.querySelector('div[class=rc] > div[class=r] > a >  h3');
+                // const title = result.querySelector('div[class=rc] > div[class=r] > a >  h3');
 
                 // //Target the url
-                // const url = result.querySelector('div[class=rc] > div[class=r] > a').href;
+                const url = result.querySelector('div[class=c] > a').href;
                 //
                 // //Target the description
                 // const desciption = result.querySelector('div[class=rc] > div[class=s] > div > span[class=st]').innerText;
                 //
                 // //Add to the return Array
                 // data.push({title, desciption, url});
-                data.push(title);
+                data.push(url);
 
             });
         });
