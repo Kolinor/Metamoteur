@@ -1,0 +1,6 @@
+srv/conf.json
+srv/package-lock.json
+
+.idea
+.vscode
+node_modules
