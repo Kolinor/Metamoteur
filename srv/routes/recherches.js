@@ -20,23 +20,31 @@ const recherche = async (req, res) => {
 
             if (!domain) continue;
 
-            const availableIpv4 = await isAvailableIpv4(domain);
-            const availableIpv6 = await isAvailableIpv6(domain);
-
-            const data = await query(req, {
+            const resBdd = await query(req, {
                 sql: 'SELECT * FROM SITES S WHERE S.DOMAIN = "' + domain + '";'
             });
+            const site = resBdd.data && resBdd.data.length && resBdd.data[0];
 
-            const insert = await query(req, {
-                sql: 'insert into SITES (DOMAIN, IPV4, IPV6) values (?,?,?);',
-                params: [
-                    domain,
-                    availableIpv4,
-                    availableIpv6
-                ]
-            });
+            if (!site) {
+                const availableIpv4 = await isAvailableIpv4(domain);
+                const availableIpv6 = await isAvailableIpv6(domain);
 
-            if (availableIpv6) a.push(link + ' : '+ availableIpv6);
+                await query(req, {
+                    sql: 'insert into SITES (DOMAIN, IPV4, IPV6) values (?,?,?);',
+                    params: [
+                        domain,
+                        availableIpv4,
+                        availableIpv6
+                    ]
+                });
+            }
+
+            const isSiteIpv4 = !!(site && site.IPV4);
+            const isSiteIpv6 = !!(site && site.IPV6);
+
+            console.log(isSiteIpv4, isSiteIpv6);
+
+            if (isSiteIpv6) a.push(link + ' : '+ isSiteIpv6);
             // console.log(link + ' : '+ await isAvailableIpv6(domain));
         }
         console.timeEnd('test');
