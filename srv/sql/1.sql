@@ -1,1 +1,19 @@
-CREATE TABLE `Metamoteur`.`sites` ( `site_id` INT NOT NULL AUTO_INCREMENT , `domaine` VARCHAR(100) NOT NULL , `ipv4` BOOLEAN NOT NULL , `ipv6` BOOLEAN NOT NULL , `transition` TIMESTAMP NOT NULL , `creation_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`site_id`)) ENGINE = InnoDB;
+create table SITES
+(
+    SITE_ID        BIGINT,
+    DOMAIN         VARCHAR(100)                        not null,
+    IPV4           BOOLEAN                             null,
+    IPV6           BOOLEAN                             null,
+    DATE_CREATTION TIMESTAMP default CURRENT_TIMESTAMP not null,
+    UPDATE_IPV6    TIMESTAMP                           null
+);
+
+create index SITES_DOMAIN_index
+    on SITES (DOMAIN);
+
+create unique index SITES_SITE_ID_uindex
+    on SITES (SITE_ID);
+
+alter table SITES
+    modify SITE_ID BIGINT auto_increment;
+

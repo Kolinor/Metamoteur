@@ -12,7 +12,7 @@ const recherche = async (req, res) => {
         const resultats = recherches.results;
         const regexDomain = /^(?:http:\/\/|www\.|https:\/\/)([^\/]+)/;
         const a = [];
-
+        console.time('test');
         for (const resultat of resultats) {
             const link = resultat.link;
             const match = link.match(regexDomain);
@@ -20,9 +20,26 @@ const recherche = async (req, res) => {
 
             if (!domain) continue;
 
-            a.push(link + ' : '+ await isAvailableIpv6(domain));
+            const availableIpv4 = await isAvailableIpv4(domain);
+            const availableIpv6 = await isAvailableIpv6(domain);
+
+            const data = await query(req, {
+                sql: 'SELECT * FROM SITES S WHERE S.DOMAIN = "' + domain + '";'
+            });
+
+            const insert = await query(req, {
+                sql: 'insert into SITES (DOMAIN, IPV4, IPV6) values (?,?,?);',
+                params: [
+                    domain,
+                    availableIpv4,
+                    availableIpv6
+                ]
+            });
+
+            if (availableIpv6) a.push(link + ' : '+ availableIpv6);
             // console.log(link + ' : '+ await isAvailableIpv6(domain));
         }
+        console.timeEnd('test');
         // const test = await query(req, {
         //     sql: 'select * from sites;'
         // });
