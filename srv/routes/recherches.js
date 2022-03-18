@@ -11,23 +11,28 @@ const recherche = async (req, res) => {
         const recherches = await search(recherche);
         const resultats = recherches.results;
         const regexDomain = /^(?:http:\/\/|www\.|https:\/\/)([^\/]+)/;
-        const a = [];
+        const resToSend = [];
+        let numberOfResultIpv6 = 0;
+
         console.time('test');
+        // console.time('test1');
         for (const resultat of resultats) {
             const link = resultat.link;
             const match = link.match(regexDomain);
             const domain = match && match.length && match[1];
+            let availableIpv4 = null;
+            let availableIpv6 = null;
 
             if (!domain) continue;
 
             const resBdd = await query(req, {
                 sql: 'SELECT * FROM SITES S WHERE S.DOMAIN = "' + domain + '";'
             });
-            const site = resBdd.data && resBdd.data.length && resBdd.data[0];
+            const site = resBdd.length && resBdd.shift();
 
             if (!site) {
-                const availableIpv4 = await isAvailableIpv4(domain);
-                const availableIpv6 = await isAvailableIpv6(domain);
+                availableIpv4 = await isAvailableIpv4(domain);
+                availableIpv6 = await isAvailableIpv6(domain);
 
                 await query(req, {
                     sql: 'insert into SITES (DOMAIN, IPV4, IPV6) values (?,?,?);',
@@ -37,21 +42,27 @@ const recherche = async (req, res) => {
                         availableIpv6
                     ]
                 });
+                numberOfResultIpv6++;
+            } else {
+                availableIpv4 = !!(site && site.IPV4);
+                availableIpv6 = !!(site && site.IPV6);
             }
 
-            const isSiteIpv4 = !!(site && site.IPV4);
-            const isSiteIpv6 = !!(site && site.IPV6);
+            if (availableIpv6 && numberOfResultIpv6 < 10) {
+                resToSend.push({
+                    ...resultat,
+                    ipv4: availableIpv4,
+                    ipv6: availableIpv6
+                });
+                numberOfResultIpv6++;
+            }
+            if (numberOfResultIpv6 === 10) {
 
-            console.log(isSiteIpv4, isSiteIpv6);
-
-            if (isSiteIpv6) a.push(link + ' : '+ isSiteIpv6);
-            // console.log(link + ' : '+ await isAvailableIpv6(domain));
+                // console.timeEnd('test1');
+            }
         }
         console.timeEnd('test');
-        // const test = await query(req, {
-        //     sql: 'select * from sites;'
-        // });
-        res.send(a);
+        res.send(resToSend);
     } catch(err) {
         console.error(err);
     }
