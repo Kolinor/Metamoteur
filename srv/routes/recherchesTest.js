@@ -4,192 +4,252 @@ const router = express.Router();
 const rechercheTest = (req, res) => {
     res.send([
         {
-            "title": "Wikipedia, the free encyclopedia",
-            "link": "https://en.wikipedia.org/wiki/Main_Page",
-            "description": "",
+            "title": "Unilasalle - Wikipedia",
+            "link": "https://en.wikipedia.org/wiki/Unilasalle",
+            "description": "UniLaSalle is one of the 210 French engineering schools authorized to award engineering degrees. It was created following the merger of ESITPA and LaSalle ...Campus： Mont-Saint-AignanLocation： Beauvais ‎Mont-Saint-Aignan‎, ‎France‎Motto in English： Forever UnitedPresident： Sébastien Windsor‎History · ‎ESITPA (1919-2015) · ‎Ethos · ‎Degree programs",
             "additional_links": [
                 {
-                    "text": "Wikipedia, the free encyclopediahttps://en.wikipedia.org › wiki › Main_Page",
-                    "href": "https://en.wikipedia.org/wiki/Main_Page"
+                    "text": "Unilasalle - Wikipediahttps://en.wikipedia.org › wiki › Unil...",
+                    "href": "https://en.wikipedia.org/wiki/Unilasalle"
                 },
                 {
-                    "text": "Deaths in 2022",
-                    "href": "https://en.wikipedia.org/wiki/Deaths_in_2022"
+                    "text": "キャッシュ",
+                    "href": "https://webcache.googleusercontent.com/search?q=cache:PeR3zoOaOwoJ:https://en.wikipedia.org/wiki/Unilasalle+&cd=7&hl=ja&ct=clnk&gl=jp"
                 },
                 {
-                    "text": "Russian invasion of Ukraine",
-                    "href": "https://en.wikipedia.org/wiki/Prelude_to_the_2022_Russian_invasion_of_Ukraine"
+                    "text": "このページを訳す",
+                    "href": "https://translate.google.com/translate?hl=ja&sl=en&u=https://en.wikipedia.org/wiki/Unilasalle&prev=search&pto=aue"
                 },
                 {
-                    "text": "Wiki",
-                    "href": "https://en.wikipedia.org/wiki/Wikipedia"
+                    "text": "Mont-Saint-Aignan",
+                    "href": "http://en.wikipedia.org/wiki/Beauvais"
                 },
                 {
-                    "text": "English language",
-                    "href": "https://en.wikipedia.org/wiki/English_language"
+                    "text": "Beauvais",
+                    "href": "http://en.wikipedia.org/wiki/Beauvais"
+                },
+                {
+                    "text": "Mont-Saint-Aignan",
+                    "href": "http://en.wikipedia.org/wiki/Mont-Saint-Aignan"
+                },
+                {
+                    "text": "France",
+                    "href": "http://en.wikipedia.org/wiki/France"
+                },
+                {
+                    "text": "History",
+                    "href": "https://en.wikipedia.org/wiki/Unilasalle#History"
+                },
+                {
+                    "text": "ESITPA (1919-2015)",
+                    "href": "https://en.wikipedia.org/wiki/Unilasalle#ESITPA_(1919-2015)"
+                },
+                {
+                    "text": "Ethos",
+                    "href": "https://en.wikipedia.org/wiki/Unilasalle#Ethos"
+                },
+                {
+                    "text": "Degree programs",
+                    "href": "https://en.wikipedia.org/wiki/Unilasalle#Degree_programs"
                 }
             ],
             "cite": {
-                "domain": "https://en.wikipedia.org › wiki › Main_Page",
-                "span": " › wiki › Main_Page"
+                "domain": "https://en.wikipedia.org › wiki › Unil...",
+                "span": " › wiki › Unil..."
             },
             "ipv4": true,
-            "ipv6": true
+            "ipv6": true,
+            "update_ipv6": "2022-03-22T07:59:53.000Z"
         },
         {
-            "title": "Wikipedia, the free encyclopedia",
-            "link": "https://en.wikipedia.org/wiki/Main_Page",
-            "description": "The Pali-Aike volcanic field is a volcanic field in Argentina that straddles the border with Chile. It is part of a family of back-arc volcanoes in ...",
+            "title": "UniLaSalle, ボーベー, フランス - 修士号 - MASTERSTUDIES",
+            "link": "https://www.masterdegree.jp/%E5%A4%A7%E5%AD%A6/%E3%83%95%E3%83%A9%E3%83%B3%E3%82%B9/UniLaSalle/",
+            "description": "UniLaSalleジェネラリストエンジニアをトレーニングして、特に農業、食品産業、食品と健康、地質学、環境の各セクターで上級管理職および経営幹部を務めます。",
             "additional_links": [
                 {
-                    "text": "Wikipedia, the free encyclopediahttps://en.wikipedia.org › wiki › Main_Page",
-                    "href": "https://en.wikipedia.org/wiki/Main_Page"
-                }
-            ],
-            "cite": {
-                "domain": "https://en.wikipedia.org › wiki › Main_Page",
-                "span": " › wiki › Main_Page"
-            },
-            "ipv4": true,
-            "ipv6": true
-        },
-        {
-            "title": "Wikipedia",
-            "link": "https://www.wikipedia.org/",
-            "description": "Wikipedia is a free online encyclopedia, created and edited by volunteers around the world and hosted by the Wikimedia Foundation.",
-            "additional_links": [
-                {
-                    "text": "Wikipediahttps://www.wikipedia.org",
-                    "href": "https://www.wikipedia.org/"
-                }
-            ],
-            "cite": {},
-            "ipv4": true,
-            "ipv6": true
-        },
-        {
-            "title": "Wikipedia - Apps on Google Play",
-            "link": "https://play.google.com/store/apps/details?id=org.wikipedia&hl=en_US&gl=US",
-            "description": "The best Wikipedia experience on your Mobile device. Ad-free and free of charge, forever. With the official Wikipedia app, you can search and explore 40+ ...",
-            "additional_links": [
-                {
-                    "text": "Wikipedia - Apps on Google Playhttps://play.google.com › store › apps › details › id=org...",
-                    "href": "https://play.google.com/store/apps/details?id=org.wikipedia&hl=en_US&gl=US"
-                }
-            ],
-            "cite": {
-                "domain": "https://play.google.com › store › apps › details › id=org...",
-                "span": " › store › apps › details › id=org..."
-            },
-            "g_review_stars": " Rating: 4.5 · ‎673,479 votes · ‎Free · ‎Android · ‎Reference",
-            "ipv4": true,
-            "ipv6": true
-        },
-        {
-            "title": "Wikipedia on the App Store",
-            "link": "https://apps.apple.com/us/app/wikipedia/id324715238",
-            "description": "Explore your world, find a quick fact, or dive down a Wikipedia rabbit hole with the official Wikipedia app for iOS. With more than 40 million articles across ...",
-            "additional_links": [
-                {
-                    "text": "Wikipedia on the App Storehttps://apps.apple.com › app › wikipedia",
-                    "href": "https://apps.apple.com/us/app/wikipedia/id324715238"
-                }
-            ],
-            "cite": {
-                "domain": "https://apps.apple.com › app › wikipedia",
-                "span": " › app › wikipedia"
-            },
-            "g_review_stars": " Rating: 4.4 · ‎3,941 reviews · ‎Free · ‎iOS",
-            "ipv4": true,
-            "ipv6": true
-        },
-        {
-            "title": "Wikipedia - Home | Facebook",
-            "link": "https://www.facebook.com/wikipedia/",
-            "description": "Wikipedia. 5546095 likes · 2667 talking about this. A free, collaborative, and multilingual internet encyclopedia. Comments on this page will be...",
-            "additional_links": [
-                {
-                    "text": "Wikipedia - Home | Facebookhttps://www.facebook.com › ... › Nonprofit organization",
-                    "href": "https://www.facebook.com/wikipedia/"
-                }
-            ],
-            "cite": {
-                "domain": "https://www.facebook.com › ... › Nonprofit organization",
-                "span": " › ... › Nonprofit organization"
-            },
-            "ipv4": true,
-            "ipv6": true
-        },
-        {
-            "title": "How Wikipedia Works: And how You Can be a Part of it",
-            "link": "https://books.google.com/books?id=lHdi1CEPLb4C&pg=PA67&lpg=PA67&dq=wikipedia&source=bl&ots=Finu2pGOEt&sig=ACfU3U1HvD5g_gA9nH33rRms8AzXRnpelQ&hl=en&sa=X&ved=2ahUKEwiiqK_6nc_2AhUAp3IEHVpSAXEQ6AF6BQiNARAD",
-            "description": "Phoebe Ayers, ‎Charles Matthews, ‎Ben Yates · 2008 · ‎Computerswhen and How to exclude wikipedia from Your Google search Just as you can exclude all pages that are notfrom Wikipedia, you can also exclude all pages that ...",
-            "additional_links": [
-                {
-                    "text": "How Wikipedia Works: And how You Can be a Part of ithttps://books.google.com › books",
-                    "href": "https://books.google.com/books?id=lHdi1CEPLb4C&pg=PA67&lpg=PA67&dq=wikipedia&source=bl&ots=Finu2pGOEt&sig=ACfU3U1HvD5g_gA9nH33rRms8AzXRnpelQ&hl=en&sa=X&ved=2ahUKEwiiqK_6nc_2AhUAp3IEHVpSAXEQ6AF6BQiNARAD"
+                    "text": "UniLaSalle, ボーベー, フランス - 修士号 - MASTERSTUDIEShttps://www.masterdegree.jp › 大学 › UniLaSalle",
+                    "href": "https://www.masterdegree.jp/%E5%A4%A7%E5%AD%A6/%E3%83%95%E3%83%A9%E3%83%B3%E3%82%B9/UniLaSalle/"
                 },
                 {
-                    "text": "Phoebe Ayers",
-                    "href": "/search?num=100&tbm=bks&q=inauthor:%22Phoebe+Ayers%22&sa=X&ved=2ahUKEwiiqK_6nc_2AhUAp3IEHVpSAXEQ9Ah6BQiNARAG"
-                },
-                {
-                    "text": "Charles Matthews",
-                    "href": "/search?num=100&tbm=bks&q=inauthor:%22Charles+Matthews%22&sa=X&ved=2ahUKEwiiqK_6nc_2AhUAp3IEHVpSAXEQ9Ah6BQiNARAH"
-                },
-                {
-                    "text": "Ben Yates",
-                    "href": "/search?num=100&tbm=bks&q=inauthor:%22Ben+Yates%22&sa=X&ved=2ahUKEwiiqK_6nc_2AhUAp3IEHVpSAXEQ9Ah6BQiNARAI"
+                    "text": "キャッシュ",
+                    "href": "https://webcache.googleusercontent.com/search?q=cache:qtQirl8avmoJ:https://www.masterdegree.jp/%25E5%25A4%25A7%25E5%25AD%25A6/%25E3%2583%2595%25E3%2583%25A9%25E3%2583%25B3%25E3%2582%25B9/UniLaSalle/+&cd=9&hl=ja&ct=clnk&gl=jp"
                 }
             ],
             "cite": {
-                "domain": "https://books.google.com › books",
-                "span": " › books"
+                "domain": "https://www.masterdegree.jp › 大学 › UniLaSalle",
+                "span": " › 大学 › UniLaSalle"
             },
             "ipv4": true,
-            "ipv6": true
+            "ipv6": true,
+            "update_ipv6": null
         },
         {
-            "title": "Wikipedia: The Missing Manual: The Missing Manual",
-            "link": "https://books.google.com/books?id=h37N0BvkVSUC&pg=PA69&lpg=PA69&dq=wikipedia&source=bl&ots=RpHMEaeuGP&sig=ACfU3U38vyL752ilBMDTGynlb7Ea4klyVg&hl=en&sa=X&ved=2ahUKEwiiqK_6nc_2AhUAp3IEHVpSAXEQ6AF6BQiQARAD",
-            "description": "John Broughton · 2008 · ‎Computerscan find research resources that use this license at Wikipedia:GNU Free Documentation License resources (shortcut: WP:FDLR).",
+            "title": "UniLaSalle | University Info | 4 Masters in English",
+            "link": "https://www.mastersportal.com/universities/16293/unilasalle.html",
+            "description": "UniLaSalle · History. Founded in 1854 by the Brothers of the Christian Schools, whose work is driven by the educational precepts of Jean-Baptiste de La Salle, ...",
             "additional_links": [
                 {
-                    "text": "Wikipedia: The Missing Manual: The Missing Manualhttps://books.google.com › books",
-                    "href": "https://books.google.com/books?id=h37N0BvkVSUC&pg=PA69&lpg=PA69&dq=wikipedia&source=bl&ots=RpHMEaeuGP&sig=ACfU3U38vyL752ilBMDTGynlb7Ea4klyVg&hl=en&sa=X&ved=2ahUKEwiiqK_6nc_2AhUAp3IEHVpSAXEQ6AF6BQiQARAD"
+                    "text": "UniLaSalle | University Info | 4 Masters in Englishhttps://www.mastersportal.com › unil...",
+                    "href": "https://www.mastersportal.com/universities/16293/unilasalle.html"
                 },
                 {
-                    "text": "John Broughton",
-                    "href": "/search?num=100&tbm=bks&q=inauthor:%22John+Broughton%22&sa=X&ved=2ahUKEwiiqK_6nc_2AhUAp3IEHVpSAXEQ9Ah6BQiQARAG"
+                    "text": "キャッシュ",
+                    "href": "https://webcache.googleusercontent.com/search?q=cache:7J_tjPN0oh8J:https://www.mastersportal.com/universities/16293/unilasalle.html+&cd=10&hl=ja&ct=clnk&gl=jp"
+                },
+                {
+                    "text": "このページを訳す",
+                    "href": "https://translate.google.com/translate?hl=ja&sl=en&u=https://www.mastersportal.com/universities/16293/unilasalle.html&prev=search&pto=aue"
                 }
             ],
             "cite": {
-                "domain": "https://books.google.com › books",
-                "span": " › books"
+                "domain": "https://www.mastersportal.com › unil...",
+                "span": " › unil..."
             },
+            "g_review_stars": " 評価: 4.6 · ‎9 票",
             "ipv4": true,
-            "ipv6": true
+            "ipv6": true,
+            "update_ipv6": null
         },
         {
-            "title": "Blogs, Wikipedia, Second Life, and Beyond: From Production ...",
-            "link": "https://books.google.com/books?id=oj2A68UIHpkC&pg=PA126&lpg=PA126&dq=wikipedia&source=bl&ots=z3-Z0i1HOt&sig=ACfU3U2kqI3cGak004bXo_InRGqJgbdFsQ&hl=en&sa=X&ved=2ahUKEwiiqK_6nc_2AhUAp3IEHVpSAXEQ6AF6BQiMARAD",
-            "description": "Axel Bruns · 2008 · ‎Computers( The question of exactly which national legislation may apply for the international project of building a collaborative online Wikipedia must also be ...",
+            "title": "Unilasalle - ホーム | Facebook",
+            "link": "https://ja-jp.facebook.com/UniLaSalle.fr/",
+            "description": "UniLaSalle, école d'ingénieurs dans les Sciences de la Terre, du Vivant, de l'Environnement, de... 19 rue Pierre Waguet, 60026 フランスボーヴェ.",
             "additional_links": [
                 {
-                    "text": "Blogs, Wikipedia, Second Life, and Beyond: From Production ...https://books.google.com › books",
-                    "href": "https://books.google.com/books?id=oj2A68UIHpkC&pg=PA126&lpg=PA126&dq=wikipedia&source=bl&ots=z3-Z0i1HOt&sig=ACfU3U2kqI3cGak004bXo_InRGqJgbdFsQ&hl=en&sa=X&ved=2ahUKEwiiqK_6nc_2AhUAp3IEHVpSAXEQ6AF6BQiMARAD"
+                    "text": "Unilasalle - ホーム | Facebookhttps://ja-jp.facebook.com › ... › ビジネス › 教育 › 大学",
+                    "href": "https://ja-jp.facebook.com/UniLaSalle.fr/"
                 },
                 {
-                    "text": "Axel Bruns",
-                    "href": "/search?num=100&tbm=bks&q=inauthor:%22Axel+Bruns%22&sa=X&ved=2ahUKEwiiqK_6nc_2AhUAp3IEHVpSAXEQ9Ah6BQiMARAG"
+                    "text": "キャッシュ",
+                    "href": "https://webcache.googleusercontent.com/search?q=cache:i2ActsfFhygJ:https://ja-jp.facebook.com/UniLaSalle.fr/+&cd=14&hl=ja&ct=clnk&gl=jp"
                 }
             ],
             "cite": {
-                "domain": "https://books.google.com › books",
-                "span": " › books"
+                "domain": "https://ja-jp.facebook.com › ... › ビジネス › 教育 › 大学",
+                "span": " › ... › ビジネス › 教育 › 大学"
+            },
+            "g_review_stars": " 評価: 4.8 · ‎218 票",
+            "ipv4": true,
+            "ipv6": true,
+            "update_ipv6": null
+        },
+        {
+            "title": "UniLaSalle : Rankings, Fees & Courses Details - QS Top ...",
+            "link": "https://www.topuniversities.com/universities/unilasalle",
+            "description": "Founded in 1864, UniLaSalle is a center for higher education in earth, life and environmental sciences that is recognized for its excellence in France and ...",
+            "additional_links": [
+                {
+                    "text": "UniLaSalle : Rankings, Fees & Courses Details - QS Top ...https://www.topuniversities.com › uni...",
+                    "href": "https://www.topuniversities.com/universities/unilasalle"
+                },
+                {
+                    "text": "キャッシュ",
+                    "href": "https://webcache.googleusercontent.com/search?q=cache:TRXdFpFopVEJ:https://www.topuniversities.com/universities/unilasalle+&cd=16&hl=ja&ct=clnk&gl=jp"
+                },
+                {
+                    "text": "このページを訳す",
+                    "href": "https://translate.google.com/translate?hl=ja&sl=en&u=https://www.topuniversities.com/universities/unilasalle&prev=search&pto=aue"
+                }
+            ],
+            "cite": {
+                "domain": "https://www.topuniversities.com › uni...",
+                "span": " › uni..."
             },
             "ipv4": true,
-            "ipv6": true
+            "ipv6": true,
+            "update_ipv6": null
+        },
+        {
+            "title": "UniLaSalle Rouen (@unilasalle_rouen) • Instagram photos ...",
+            "link": "https://www.instagram.com/unilasalle_rouen/",
+            "description": "1103 Followers, 65 Following, 234 Posts - See Instagram photos and videos from UniLaSalle Rouen (@unilasalle_rouen)",
+            "additional_links": [
+                {
+                    "text": "UniLaSalle Rouen (@unilasalle_rouen) • Instagram photos ...https://www.instagram.com › unilasall...",
+                    "href": "https://www.instagram.com/unilasalle_rouen/"
+                },
+                {
+                    "text": "このページを訳す",
+                    "href": "https://translate.google.com/translate?hl=ja&sl=en&u=https://www.instagram.com/unilasalle_rouen/&prev=search&pto=aue"
+                }
+            ],
+            "cite": {
+                "domain": "https://www.instagram.com › unilasall...",
+                "span": " › unilasall..."
+            },
+            "ipv4": true,
+            "ipv6": true,
+            "update_ipv6": null
+        },
+        {
+            "title": "UniLaSalle Employees, Location, Alumni | LinkedIn",
+            "link": "https://www.linkedin.com/school/unilasalle/",
+            "description": "UniLaSalle | 19811 followers on LinkedIn. Institut Polytechnique | UniLaSalle est une école d'ingénieurs post-bac qui propose à ses élèves 3 formations ...",
+            "additional_links": [
+                {
+                    "text": "UniLaSalle Employees, Location, Alumni | LinkedInhttps://www.linkedin.com › school",
+                    "href": "https://www.linkedin.com/school/unilasalle/"
+                },
+                {
+                    "text": "このページを訳す",
+                    "href": "https://translate.google.com/translate?hl=ja&sl=fr&u=https://www.linkedin.com/school/unilasalle/&prev=search&pto=aue"
+                }
+            ],
+            "cite": {
+                "domain": "https://www.linkedin.com › school",
+                "span": " › school"
+            },
+            "ipv4": true,
+            "ipv6": true,
+            "update_ipv6": null
+        },
+        {
+            "title": "INSTITUT POLYTECHNIQUE UNILASALLE - Geo3En",
+            "link": "https://geo3en.eu/institut-polytechnique-unilasalle/",
+            "description": "UniLaSalle disciplines, which include agriculture, the food industry, food & health, geology, and environmental studies, prepare our students – as future ...",
+            "additional_links": [
+                {
+                    "text": "INSTITUT POLYTECHNIQUE UNILASALLE - Geo3Enhttps://geo3en.eu › institut-polytechni...",
+                    "href": "https://geo3en.eu/institut-polytechnique-unilasalle/"
+                },
+                {
+                    "text": "キャッシュ",
+                    "href": "https://webcache.googleusercontent.com/search?q=cache:byOZZL19kaUJ:https://geo3en.eu/institut-polytechnique-unilasalle/+&cd=22&hl=ja&ct=clnk&gl=jp"
+                },
+                {
+                    "text": "このページを訳す",
+                    "href": "https://translate.google.com/translate?hl=ja&sl=en&u=https://geo3en.eu/institut-polytechnique-unilasalle/&prev=search&pto=aue"
+                }
+            ],
+            "cite": {
+                "domain": "https://geo3en.eu › institut-polytechni...",
+                "span": " › institut-polytechni..."
+            },
+            "ipv4": true,
+            "ipv6": true,
+            "update_ipv6": null
+        },
+        {
+            "title": "Unilasalle-RJ | Networking Academy",
+            "link": "https://www.netacad.com/ja/node/7831",
+            "description": "Unilasalle-RJ. Rua Gastão Gonçalves, 79Santa Rosa Niteroi, State of Rio de Janeiro Brazil. http://www.unilasalle.org. Cisco Academy, ID 20029504 ...",
+            "additional_links": [
+                {
+                    "text": "Unilasalle-RJ | Networking Academyhttps://www.netacad.com › node",
+                    "href": "https://www.netacad.com/ja/node/7831"
+                },
+                {
+                    "text": "キャッシュ",
+                    "href": "https://webcache.googleusercontent.com/search?q=cache:LcJ1v6MusDAJ:https://www.netacad.com/ja/node/7831+&cd=26&hl=ja&ct=clnk&gl=jp"
+                }
+            ],
+            "cite": {
+                "domain": "https://www.netacad.com › node",
+                "span": " › node"
+            },
+            "ipv4": true,
+            "ipv6": true,
+            "update_ipv6": null
         }
     ]);
 };

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const query = require('../lib/query');
 const search = require('../lib/googlesearch');
-const { isAvailableIpv6, isAvailableIpv4 } = require('../lib/testDomain');
+const {isAvailableIpv6, isAvailableIpv4} = require('../lib/testDomain');
 
 const recherche = async (req, res) => {
     try {
@@ -65,14 +65,14 @@ const recherche = async (req, res) => {
                     ...resultat,
                     ipv4: availableIpv4,
                     ipv6: availableIpv6,
-                    update_ipv6: site.UPDATE_IPV6
+                    update_ipv6: site ? site.UPDATE_IPV6 : null
                 });
                 numberOfResultIpv6++;
             }
         }
         console.timeEnd('test');
         res.send(resToSend);
-    } catch(err) {
+    } catch (err) {
         console.error(err);
     }
 };
