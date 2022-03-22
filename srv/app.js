@@ -7,6 +7,7 @@ const mariadb = require('mariadb');
 const config = require('./conf.json');
 
 var recherchesRouter = require('./routes/recherches');
+var recherchesRouterTest = require('./routes/recherchesTest');
 
 var app = express();
 
@@ -34,6 +35,7 @@ app.use(function(req, res, next) {
 });
 
 app.use('/', recherchesRouter);
+app.use('/', recherchesRouterTest);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
