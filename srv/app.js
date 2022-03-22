@@ -8,6 +8,8 @@ const config = require('./conf.json');
 
 var recherchesRouter = require('./routes/recherches');
 var recherchesRouterTest = require('./routes/recherchesTest');
+var annuaireRouterTest = require('./routes/annuaire');
+var statistiquesRouterTest = require('./routes/statistiques');
 
 var app = express();
 
@@ -36,6 +38,8 @@ app.use(function(req, res, next) {
 
 app.use('/', recherchesRouter);
 app.use('/', recherchesRouterTest);
+app.use('/', annuaireRouterTest);
+app.use('/', statistiquesRouterTest);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

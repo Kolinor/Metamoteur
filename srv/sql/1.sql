@@ -4,7 +4,7 @@ create table SITES
     DOMAIN         VARCHAR(100)                        not null,
     IPV4           BOOLEAN                             null,
     IPV6           BOOLEAN                             null,
-    DATE_CREATTION TIMESTAMP default CURRENT_TIMESTAMP not null,
+    DATE_CREATION TIMESTAMP default CURRENT_TIMESTAMP not null,
     UPDATE_IPV6    TIMESTAMP                           null
 );
 
