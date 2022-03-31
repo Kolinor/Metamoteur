@@ -30,6 +30,8 @@ const pool = mariadb.createPool({
   connectionLimit: config.mariadb.connectionLimit,
   database: config.mariadb.db,
 });
+const checkConnection = require('./lib/checkConnection');
+checkConnection(pool);
 
 app.use(function(req, res, next) {
   req.pool = pool;

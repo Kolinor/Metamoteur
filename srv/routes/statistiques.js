@@ -24,8 +24,40 @@ const getStatistique = async (req, res) => {
     }
 };
 
+const getLastSites = async (req, res) => {
+    try {
+        const resBdd = await query(req, {
+            sql: 'select S.IPV4, S.IPV6, S.UPDATE_IPV6, S.DOMAIN from SITES S order by S.SITE_ID desc limit 10;'
+        });
+
+        res.send(resBdd);
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+const getLastSitesIpv6 = async (req, res) => {
+    try {
+        const resBdd = await query(req, {
+            sql: 'select S.IPV4, S.IPV6, S.UPDATE_IPV6, S.DOMAIN from SITES S WHERE S.UPDATE_IPV6 IS NOT NULL order by S.SITE_ID desc limit 10;'
+        });
+
+        res.send(resBdd);
+    } catch (err) {
+        console.error(err);
+    }
+};
+
 router
     .route('/statistique')
     .get(getStatistique);
+
+router
+    .route('/statistique/dernierSites')
+    .get(getLastSites);
+
+router
+    .route('/statistique/dernierSites/ipv6')
+    .get(getLastSitesIpv6);
 
 module.exports = router;
