@@ -9,6 +9,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="style.css">
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <body>
@@ -35,27 +38,75 @@
     </div>
 </nav>
 
+<div class="container mt-3 stats">
+<!--    <p>totalSites : 978</p>-->
+<!--    <p>totalSitesIpv6: 386</p>-->
+<!--    <p>pourcentageIpv6 </p>-->
 
 
+</div>
 
-<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
 </body>
-</html>
-<script>
-var xValues = ["janv","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"];
 
-new Chart("myChart", {
-  type: "line",
-  data: {
-    labels: xValues,
-    datasets: [{ 
-      data: [10,20,40,5,],
-      borderColor: "red",
-      fill: false
-    }]
-  },
-  options: {
-    legend: {display: false}
-  }
-});
+<script>
+
+
+    $(document).ready(function () {
+
+
+        // Récupération du parent
+
+        // Envoi des données au serveur
+        $.ajax({
+            url: 'http://192.168.1.191:3000/statistique',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+
+                console.log(data);
+                // console.log("success");
+
+
+                    // $(".stats").append("<p class='id_res'><a href='" + site.link + "'>" + site.title + "</a></br>" + site.description + "</br></p>")
+                    $(".stats").append("<p>"+data.totalSites + "</p>")
+
+
+
+
+            },
+            error: function (data) {
+                console.log(data)
+
+            }
+        });
+
+
+    });
+
 </script>
+
+</html>
+
+
+<!--<canvas id="myChart" style="width:100%;max-width:600px"></canvas>-->
+<!--</body>-->
+<!--</html>-->
+<!--<script>-->
+<!--    var xValues = ["janv", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];-->
+
+<!--    new Chart("myChart", {-->
+<!--        type: "line",-->
+<!--        data: {-->
+<!--            labels: xValues,-->
+<!--            datasets: [{-->
+<!--                data: [10, 20, 40, 5,],-->
+<!--                borderColor: "red",-->
+<!--                fill: false-->
+<!--            }]-->
+<!--        },-->
+<!--        options: {-->
+<!--            legend: {display: false}-->
+<!--        }-->
+<!--    });-->
+<!--</script>-->
