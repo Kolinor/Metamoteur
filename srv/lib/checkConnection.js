@@ -7,7 +7,7 @@ module.exports = async (pool) => {
         // permet de passer le pool sql
         const req = {};
         req.pool = pool;
-        schedule.scheduleJob({hour: 15, minute: 59}, async () => {
+        schedule.scheduleJob({hour: 8, minute: 35}, async () => {
             console.time('a');
             const results = await query(req, {
                 sql: 'select S.DOMAIN, S.IPV4, S.IPV6 from SITES S;'

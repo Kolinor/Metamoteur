@@ -17,6 +17,8 @@
     "morgan": "~1.9.1",
     "node-schedule": "^2.1.0",
     "nodemon": "^2.0.15",
-    "puppeteer": "^13.5.1"
+    "puppeteer": "^13.5.1",
+    "swagger-jsdoc": "^6.2.0",
+    "swagger-ui-express": "^4.3.0"
   }
 }

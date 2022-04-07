@@ -29,7 +29,7 @@ const recherche = async (req, res) => {
             });
             const site = resBdd.length && resBdd.shift();
 
-            if (site && !site.IPV6) {
+            if (site && !!site.IPV4 && !site.IPV6) {
                 availableIpv6 = await isAvailableIpv6(domain);
 
                 if (availableIpv6) {
@@ -76,6 +76,46 @@ const recherche = async (req, res) => {
         console.error(err);
     }
 };
+
+/**
+ * @swagger
+ * /recherche:
+ *   get:
+ *     summary: Retourne une liste de site IPV6
+ *     description: Retourne une liste de site IPV6 à l'aide de l'API google search
+ *     responses:
+ *       200:
+ *         description: Liste de sites
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       title:
+ *                         type: string
+ *                         description: Titre du site
+ *                         example: "Wikipédia"
+ *                       link:
+ *                         type: string
+ *                         description: Le lien du site
+ *                         example: "https://www.youtube.com/watch?v=yFE6qQ3ySXE"
+ *                       description:
+ *                          type: string
+ *                          description: Une description du site web
+ *                          example: Wikipédia est un site connue de recherche
+ *                       additional_links:
+ *                          type: array
+ *                          items:
+ *                             text:
+ *                                type: string
+ *                                description: Un text descrivant
+ *
+ */
 
 router
     .route('/recherche')
