@@ -86,6 +86,18 @@
 </div>
 
 <script>
+    function loadJSON(callback) {
+        var xobj = new XMLHttpRequest();
+        xobj.overrideMimeType("application/json");
+        xobj.open('GET', './conf.json', true); // Replace 'my_data' with the path to your file
+        xobj.onreadystatechange = function () {
+            if (xobj.readyState == 4 && xobj.status == "200") {
+                // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+                callback(xobj.responseText);
+            }
+        };
+        xobj.send(null);
+    }
 
     const parsedDate = (date) => {
         const annee = date.getFullYear();
@@ -99,6 +111,9 @@
     };
 
     $(document).ready(function () {
+        loadJSON((res) => {
+            conf = JSON.parse(res);
+        });
 
         $('.loader-tableau').show();
         $('.tableau').hide();
@@ -115,46 +130,44 @@
 
 
         // Envoi des données au serveur
-        $.ajax({
-            url: `http://192.168.1.191:3000/annuaire`,
-            type: 'GET',
-            // data: {
-            //     recherche: message
-            // },
-            dataType: 'json',
-            success(data) {
 
-                $('.loader-tableau').hide();
-                $('.tableau').show();
-
-
-
-                console.log(data);
-                // console.log("success");
-                data.forEach(site => {
-                    console.log(site);
-                    const dateUpdate = site.UPDATE_IPV6 ? parsedDate(new Date(site.UPDATE_IPV6)) : '...';
-                    const dateCreation = parsedDate(new Date(site.DATE_CREATION));
-
-
-                    let contenu = "<tr><td>" + site.DOMAIN + "</td><td>" + !!site.IPV6 + "</td><td>" + !!site.IPV4 + "</td><td>" + dateCreation + "</td><td>" + dateUpdate + "</td></tr>";
-                    $("tbody").append(contenu);
-
-                    // $("#displayResult").append("<p class='id_res'><a href='" + site.link + "'>" + site.title + "</a></br>" + site.description + "</br></p>")
-
-                });
-
-                $('.myTable').DataTable({"pageLength": 50});
+        loadJSON((res) => {
+            const conf = JSON.parse(res);
+            $.ajax({
+                url: `http://${conf.serveur.ip}:${conf.serveur.port}/annuaire`,
+                type: 'GET',
+                // data: {
+                //     recherche: message
+                // },
+                dataType: 'json',
+                success(data) {
+                    $('.loader-tableau').hide();
+                    $('.tableau').show();
+                    console.log(data);
+                    // console.log("success");
+                    data.forEach(site => {
+                        console.log(site);
+                        const dateUpdate = site.UPDATE_IPV6 ? parsedDate(new Date(site.UPDATE_IPV6)) : '...';
+                        const dateCreation = parsedDate(new Date(site.DATE_CREATION));
 
 
-            },
-            error(data) {
-                console.error(data)
+                        let contenu = "<tr><td>" + site.DOMAIN + "</td><td>" + !!site.IPV6 + "</td><td>" + !!site.IPV4 + "</td><td>" + dateCreation + "</td><td>" + dateUpdate + "</td></tr>";
+                        $("tbody").append(contenu);
 
-            }
+                        // $("#displayResult").append("<p class='id_res'><a href='" + site.link + "'>" + site.title + "</a></br>" + site.description + "</br></p>")
+
+                    });
+
+                    $('.myTable').DataTable({"pageLength": 50});
+
+
+                },
+                error(data) {
+                    console.error(data)
+
+                }
+            });
         });
-
-
     });
 
 

@@ -107,6 +107,19 @@
 </div>
 
 <script>
+    function loadJSON(callback) {
+
+        var xobj = new XMLHttpRequest();
+        xobj.overrideMimeType("application/json");
+        xobj.open('GET', './conf.json', true); // Replace 'my_data' with the path to your file
+        xobj.onreadystatechange = function () {
+            if (xobj.readyState == 4 && xobj.status == "200") {
+                // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+                callback(xobj.responseText);
+            }
+        };
+        xobj.send(null);
+    }
 
     $('#myLoader').hide();
 
@@ -118,8 +131,6 @@
 
 
     $(document).ready(function () {
-
-
         function removeSearch() {
 
             $("#displayResult").empty();
@@ -137,40 +148,36 @@
             console.log(message);
             // Stop la propagation
 
-
             // Récupération du parent
             // Envoi des données au serveur
-            $.ajax({
-                url: `http://192.168.1.191:3000/recherche`,
-                type: 'GET',
-                data: {
-                    recherche: message
-                },
-                dataType: 'json',
-                success: function (data) {
-                    $('#myLoader').hide();
 
-                    console.log(data);
-                    // console.log("success");
-                    data.forEach(site => {
-                        console.log(site.title);
-                        console.log(site.link);
-                        console.log(site.description);
+            loadJSON((res) => {
+                conf = JSON.parse(res);
+                $.ajax({
+                    url: `http://${conf.serveur.ip}:${conf.serveur.port}/recherche`,
+                    type: 'GET',
+                    data: {
+                        recherche: message
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#myLoader').hide();
 
-                        $("#displayResult").append("<p class='id_res'><a href='" + site.link + "' target=\"_blank\">" + site.title + "</a></br>" + site.description + "</br></p>")
+                        console.log(data);
+                        // console.log("success");
+                        data.forEach(site => {
+                            console.log(site.title);
+                            console.log(site.link);
+                            console.log(site.description);
 
-
-                    });
-
-
-                },
-                error: function (data) {
-                    console.log(data)
-
-                }
+                            $("#displayResult").append("<p class='id_res'><a href='" + site.link + "' target=\"_blank\">" + site.title + "</a></br>" + site.description + "</br></p>")
+                        });
+                    },
+                    error: function (data) {
+                        console.log(data)
+                    }
+                });
             });
-
-
         }
 
         $('#searchQuerySubmit').on('click', function (e) {

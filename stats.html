@@ -76,7 +76,18 @@
 </body>
 
 <script>
-
+    function loadJSON(callback) {
+        var xobj = new XMLHttpRequest();
+        xobj.overrideMimeType("application/json");
+        xobj.open('GET', './conf.json', true); // Replace 'my_data' with the path to your file
+        xobj.onreadystatechange = function () {
+            if (xobj.readyState == 4 && xobj.status == "200") {
+                // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+                callback(xobj.responseText);
+            }
+        };
+        xobj.send(null);
+    }
 
     $(document).ready(function () {
 
@@ -87,73 +98,78 @@
         // Récupération du parent
 
         // Envoi des données au serveur
-        $.ajax({
-            url: 'http://192.168.1.191:3000/statistique',
-            type: 'GET',
-            dataType: 'json',
-            success: function (data) {
+        loadJSON((res) => {
+            conf = JSON.parse(res);
 
-                console.log(data);
+            $.ajax({
+                url: `http://${conf.serveur.ip}:${conf.serveur.port}/statistique`,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
 
-
-                $(".stat0").append("<p><h1>" + data.totalSites + "</h1>"+" sites référencés</p>")
-                $(".stat1").append("<p><h1>" + data.totalSitesIpv6 + "</h1>"+" sites IPv6 référencés</p>")
-                $(".stat2").append("<p><h1>" + data.pourcentageIpv6 + "%</h1>" + "de sites IPv6 dans notre base</p>")
-                let tabIPv6 = [];
+                    console.log(data);
 
 
-            },
-            error: function (data) {
-                console.log(data)
-
-            }
-        });
 
 
-        // Envoi des données au serveur
-        $.ajax({
-            url: 'http://192.168.1.191:3000/statistique/lastMonths/ipv6',
-            type: 'GET',
-            dataType: 'json',
-            success: function (data) {
-
-                console.log(data);
-                //console.log("success");
+                    $(".stat0").append("<p><h1>" + data.totalSites + "</h1>"+" sitesréférencés</p>")
+                    $(".stat1").append("<p><h1>" + data.totalSitesIpv6 + "</h1>"+" sites IPv6référencés</p>")
+                    $(".stat2").append("<p><h1>" + data.pourcentageIpv6 + "%</h1>" + "de sites IPv6 dans notre base</p>")
+                    let tabIPv6 = [];
 
 
-                tabIPv6 = data;
+                },
+                error: function (data) {
+                    console.log(data)
+
+                }
+            });
 
 
-                let monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+            // Envoi des données au serveur
+            $.ajax({
+                url: `http://${conf.serveur.ip}:${conf.serveur.port}/statistique/lastMonths/ipv6`,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
 
-                new Chart(document.getElementById("myChart"), {
-                    type: 'line',
-                    data: {
-                        labels: [monthNames[tabMonth[5]], monthNames[tabMonth[4]], monthNames[tabMonth[3]], monthNames[tabMonth[2]], monthNames[tabMonth[1]], monthNames[tabMonth[0]]],
-                        datasets: [{
-                            data: [tabIPv6[0], tabIPv6[1], tabIPv6[2], tabIPv6[3], tabIPv6[4], tabIPv6[5]],
-                            label: "Sites IPv6 référencés par mois",
-                            borderColor: "#9b3ecd",
-                            fill: false
+                    console.log(data);
+                    //console.log("success");
+
+
+                    tabIPv6 = data;
+
+
+                    let monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+
+                    new Chart(document.getElementById("myChart"), {
+                        type: 'line',
+                        data: {
+                            labels: [monthNames[tabMonth[5]], monthNames[tabMonth[4]], monthNames[tabMonth[3]], monthNames[tabMonth[2]], monthNames[tabMonth[1]], monthNames[tabMonth[0]]],
+                            datasets: [{
+                                data: [tabIPv6[0], tabIPv6[1], tabIPv6[2], tabIPv6[3], tabIPv6[4], tabIPv6[5]],
+                                label: "Sites IPv6 référencés par mois",
+                                borderColor: "#9b3ecd",
+                                fill: false
+                            }
+                            ]
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                text: 'Sites IPv6 référencés dans notre base'
+                            }
                         }
-                        ]
-                    },
-                    options: {
-                        title: {
-                            display: true,
-                            text: 'Sites IPv6 référencés dans notre base'
-                        }
-                    }
-                });
+                    });
 
 
-            },
-            error: function (data) {
-                console.log(data)
+                },
+                error: function (data) {
+                    console.log(data)
 
-            }
+                }
+            });
         });
-
 
         const d = new Date();
         let currentYear = d.getFullYear();
@@ -162,13 +178,8 @@
         for (let i = 0; i < 6; i++) {
             tabMonth[i] = (d.getMonth() - i) < 0 ? 12 + (d.getMonth() - i) : (d.getMonth() - i);
             console.log(tabMonth[i])
-
-
         }
-
         console.log(tabIPv6[0])
-
-
     })
 
 
