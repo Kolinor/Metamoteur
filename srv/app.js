@@ -5,6 +5,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mariadb = require('mariadb');
 const config = require('./conf.json');
+var express = require("express"),
+    bodyParser = require("body-parser"),
+    swaggerJsdoc = require("swagger-jsdoc"),
+    swaggerUi = require("swagger-ui-express");
 
 var recherchesRouter = require('./routes/recherches');
 var recherchesRouterTest = require('./routes/recherchesTest');
@@ -23,6 +27,43 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+const options = {
+    definition: {
+        openapi: "3.0.0",
+        info: {
+            title: "Documentation Metamoteur",
+            version: "0.1.0",
+            description:
+                "Moteur de recherche ultra puissant !!",
+            /*license: {
+                name: "MIT",
+                url: "https://spdx.org/licenses/MIT.html",
+            },
+            contact: {
+                name: "LogRocket",
+                url: "https://logrocket.com",
+                email: "info@email.com",
+            },*/
+        },
+        servers: [
+            {
+                url: "http://localhost:3000/",
+            },
+        ],
+    },
+    apis: [
+        "./routes/recherches.js"
+    ],
+};
+
+const specs = swaggerJsdoc(options);
+app.use(
+    "/api-docs",
+    swaggerUi.serve,
+    swaggerUi.setup(specs, { explorer: true })
+);
+
+
 const pool = mariadb.createPool({
   host: config.mariadb.host,
   user: config.mariadb.user,
@@ -30,6 +71,8 @@ const pool = mariadb.createPool({
   connectionLimit: config.mariadb.connectionLimit,
   database: config.mariadb.db,
 });
+const checkConnection = require('./lib/checkConnection');
+checkConnection(pool);
 
 app.use(function(req, res, next) {
   req.pool = pool;

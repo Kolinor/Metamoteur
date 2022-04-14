@@ -11,7 +11,7 @@ module.exports = async (recherche) => {
         url,
         headers: {
             'x-user-agent': 'desktop',
-            'x-proxy-location': 'EU',
+            'x-proxy-location': 'FR',
             'x-rapidapi-host': 'google-search3.p.rapidapi.com',
             'x-rapidapi-key': config.googleSearchApi.key
         }

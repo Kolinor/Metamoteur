@@ -24,8 +24,72 @@ const getStatistique = async (req, res) => {
     }
 };
 
+const getLastSites = async (req, res) => {
+    try {
+        const resBdd = await query(req, {
+            sql: 'select S.IPV4, S.IPV6, S.UPDATE_IPV6, S.DOMAIN from SITES S order by S.SITE_ID desc limit 10;'
+        });
+
+        res.send(resBdd);
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+const getLastSitesIpv6 = async (req, res) => {
+    try {
+        const resBdd = await query(req, {
+            sql: 'select S.IPV4, S.IPV6, S.UPDATE_IPV6, S.DOMAIN from SITES S WHERE S.UPDATE_IPV6 IS NOT NULL order by S.SITE_ID desc limit 10;'
+        });
+
+        res.send(resBdd);
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+const getLast6MonthsIpv6 = async (req, res) => {
+    try {
+        const resultats = await query(req, {
+            sql: 'select S.DATE_CREATION from SITES S where S.DATE_CREATION > curdate() - interval (dayofmonth(curdate()) - 1) day - interval 6 month and S.IPV6 = TRUE order by S.DATE_CREATION'
+        });
+        const obj = {};
+        for (const resultat of resultats) {
+            const dateCreation = new Date(resultat.DATE_CREATION);
+            const month = dateCreation.getMonth();
+            obj[month] = (obj[month] || 0)+1;
+        }
+
+        const d = new Date();
+        const tabMonth = [];
+        for(let i = 0; i < 6; i++){
+            tabMonth[i] = (d.getMonth() - i) < 0 ? 12 + (d.getMonth() - i) : (d.getMonth() - i);
+        }
+        const newTab = [];
+        tabMonth.forEach(month => {
+            newTab.push(obj[month] || 0);
+        });
+
+        res.send(newTab.reverse());
+    } catch (err) {
+        console.error(err);
+    }
+};
+
 router
     .route('/statistique')
     .get(getStatistique);
+
+router
+    .route('/statistique/dernierSites')
+    .get(getLastSites);
+
+router
+    .route('/statistique/dernierSites/ipv6')
+    .get(getLastSitesIpv6);
+
+router
+    .route('/statistique/lastMonths/ipv6')
+    .get(getLast6MonthsIpv6);
 
 module.exports = router;
