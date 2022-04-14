@@ -26,6 +26,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use("/meta", express.static(path.join(__dirname, 'dist')));
 
 const options = {
     definition: {
@@ -83,6 +84,7 @@ app.use('/', recherchesRouter);
 app.use('/', recherchesRouterTest);
 app.use('/', annuaireRouterTest);
 app.use('/', statistiquesRouterTest);
+// app.use('/', getIndex);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
