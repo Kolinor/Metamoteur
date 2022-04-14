@@ -125,16 +125,19 @@ color:  rgba(255,255,255,.55) !important;
 
 #myChart {
 
+    margin-bottom: 35px;
+    margin-top: 35px;
+
 
 
 }
-footer {
+.foot {
     text-align: center;
     background: #f5f5f5;
-    width: 100%;
     padding-top: 5px;
     padding-bottom: 5px;
     margin-bottom: 0px;
+    position: fixed;
 }
 
 

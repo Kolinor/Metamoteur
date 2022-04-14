@@ -44,13 +44,13 @@
 
     <div class="row">
         <div class="col-sm-2 stat0 cardy">
-            <p><h1>2 563</h1>  sites référencés</p>
+<!--            <p><h1>2 563</h1>  sites référencés</p>-->
         </div>
         <div class="col-sm-2 stat1 cardy">
-            <p><h1>400</h1> sites compatible IPv6 référencés</p>
+<!--            <p><h1>400</h1> sites compatible IPv6 référencés</p>-->
         </div>
         <div class="col-sm-2 stat2 cardy">
-            <p><h1>55%</h1> de sites IPv6 dans notre base</p>
+<!--            <p><h1>55%</h1> de sites IPv6 dans notre base</p>-->
         </div>
     </div>
 
@@ -72,11 +72,6 @@
 
 
 </div>
-
-<footer>
-    ©Copyright BTS <a href=https://www.youtube.com/watch?v=dQw4w9WgXcQ"  target="_blank">Privacy Policy</a>
-</footer>
-
 
 </body>
 
@@ -103,8 +98,8 @@
 
 
                 // $(".stats").append("<p class='id_res'><a href='" + site.link + "'>" + site.title + "</a></br>" + site.description + "</br></p>")
-                $(".stat0").append("<p><h1>" + data.totalSites + "</h1>"+" sites</p>")
-                $(".stat1").append("<p><h1>" + data.totalSitesIpv6 + "</h1>"+" sites IPv6</p>")
+                $(".stat0").append("<p><h1>" + data.totalSites + "</h1>"+" sites référencés</p>")
+                $(".stat1").append("<p><h1>" + data.totalSitesIpv6 + "</h1>"+" sites IPv6 référencés</p>")
                 $(".stat2").append("<p><h1>" + data.pourcentageIpv6 + "%</h1>" + "de sites IPv6 dans notre base</p>")
                 let tabIPv6 = [];
 

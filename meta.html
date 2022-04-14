@@ -107,13 +107,6 @@
 
 </div>
 
-<footer>
-    ©Copyright BTS <a href=https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Privacy Policy</a>
-</footer>
-
-
-</body>
-
 <script>
 
     $('#myLoader').hide();
@@ -165,7 +158,7 @@
                         console.log(site.link);
                         console.log(site.description);
 
-                        $("#displayResult").append("<p class='id_res'><a href='" + site.link + "'>" + site.title + "</a></br>" + site.description + "</br></p>")
+                        $("#displayResult").append("<p class='id_res'><a href='" + site.link + "' target=\"_blank\">" + site.title + "</a></br>" + site.description + "</br></p>")
 
 
                     });
@@ -199,6 +192,10 @@
     });
 
 </script>
+
+</body>
+
+
 
 
 </html>
