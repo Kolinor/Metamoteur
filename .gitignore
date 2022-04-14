@@ -1,5 +1,5 @@
-srv/conf.json
-srv/package-lock.json
+conf.json
+package-lock.json
 
 .idea
 .vscode
