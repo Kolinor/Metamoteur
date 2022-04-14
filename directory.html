@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark menu">
+<nav class="navbar navbar-expand-sm navbar-dark menu">
     <div class="container-fluid">
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
@@ -40,9 +40,21 @@
 </nav>
 
 
+
 <div class="container mt-3">
     <h2>Annuaire</h2>
     <p>Listing des noms de domaines compatible IPv4 ou IPv6 présent dans notre base.</p>
+    <div class="loadingio-spinner-magnify-x19nng8hmn loader-tableau">
+        <div class="ldio-v4u36a3b2mm">
+            <div>
+                <div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tableau">
     <table class="table table-hover myTable">
         <thead>
         <tr>
@@ -54,29 +66,23 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
-            <td>pute</td>
-        </tr>
-        <tr>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
-        </tr>
-        <tr>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
-        </tr>
+        <!--        <tr>-->
+        <!--            <td></td>-->
+        <!--            <td></td>-->
+        <!--            <td></td>-->
+        <!--            <td></td>-->
+        <!--            <td></td>-->
+        <!--        </tr>-->
         </tbody>
+        <tfoot>
+        <th>Website</th>
+        <th>IPv6</th>
+        <th>IPv4</th>
+        <th>Date Référencement</th>
+        <th>Date Transition</th>
+        </tfoot>
     </table>
+    </div>
 </div>
 
 <script>
@@ -86,12 +92,16 @@
         const jour = date.getDay();
         const mois = date.getMonth();
         const heure = date.getHours();
-        const min = date.getMinutes();
+        let min = date.getMinutes();
+        if (min < 10) min = `0${min}`
 
         return `${jour}/${mois}/${annee} - ${heure}:${min}`;
     };
 
     $(document).ready(function () {
+
+        $('.loader-tableau').show();
+        $('.tableau').hide();
 
         console.log("test")
 
@@ -103,16 +113,21 @@
         //
         // }
 
-        const conf = require('./conf.json');
+
         // Envoi des données au serveur
         $.ajax({
-            url: `http://${conf.serveur.ip}:${conf.serveur.port}/annuaire`,
+            url: `http://192.168.1.191:3000/annuaire`,
             type: 'GET',
             // data: {
             //     recherche: message
             // },
             dataType: 'json',
             success(data) {
+
+                $('.loader-tableau').hide();
+                $('.tableau').show();
+
+
 
                 console.log(data);
                 // console.log("success");
@@ -121,12 +136,15 @@
                     const dateUpdate = site.UPDATE_IPV6 ? parsedDate(new Date(site.UPDATE_IPV6)) : '...';
                     const dateCreation = parsedDate(new Date(site.DATE_CREATION));
 
+
                     let contenu = "<tr><td>" + site.DOMAIN + "</td><td>" + !!site.IPV6 + "</td><td>" + !!site.IPV4 + "</td><td>" + dateCreation + "</td><td>" + dateUpdate + "</td></tr>";
                     $("tbody").append(contenu);
 
-                    $("#displayResult").append("<p class='id_res'><a href='" + site.link + "'>" + site.title + "</a></br>" + site.description + "</br></p>")
+                    // $("#displayResult").append("<p class='id_res'><a href='" + site.link + "'>" + site.title + "</a></br>" + site.description + "</br></p>")
 
                 });
+
+                $('.myTable').DataTable({"pageLength": 50});
 
 
             },
@@ -137,13 +155,14 @@
         });
 
 
-        $('.myTable').DataTable();
-
-
     });
 
 
 </script>
+
+<footer>
+    ©Copyright BTS <a href=https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Privacy Policy</a>
+</footer>
 
 </body>
 </html>
