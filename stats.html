@@ -8,7 +8,7 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="style.css">
-<!--<link rel="stylesheet" href="border_gradient.scss">-->
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -94,10 +94,8 @@
             success: function (data) {
 
                 console.log(data);
-                // console.log("success");
 
 
-                // $(".stats").append("<p class='id_res'><a href='" + site.link + "'>" + site.title + "</a></br>" + site.description + "</br></p>")
                 $(".stat0").append("<p><h1>" + data.totalSites + "</h1>"+" sites référencés</p>")
                 $(".stat1").append("<p><h1>" + data.totalSitesIpv6 + "</h1>"+" sites IPv6 référencés</p>")
                 $(".stat2").append("<p><h1>" + data.pourcentageIpv6 + "%</h1>" + "de sites IPv6 dans notre base</p>")
