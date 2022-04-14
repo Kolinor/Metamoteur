@@ -136,7 +136,9 @@ color:  rgba(255,255,255,.55) !important;
     padding-top: 5px;
     padding-bottom: 5px;
     margin-bottom: 0px;
-    /*position: fixed;*/
+    bottom: 0px;
+    width: 100%;
+    position: absolute;
 }
 
 

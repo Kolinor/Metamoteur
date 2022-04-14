@@ -78,6 +78,14 @@
     </div>
 </div>
 
+<div class="foot">
+    ©Copyright BTS <a href=https://www.youtube.com/watch?v=dQw4w9WgXcQ"  target="_blank">Privacy Policy</a>
+</div>
+
+</body>
+</html>
+
+
 <script>
     function loadJSON(callback) {
         var xobj = new XMLHttpRequest();
@@ -111,8 +119,6 @@
         $('.loader-tableau').show();
         $('.tableau').hide();
 
-        console.log("test")
-
         // Envoi des données au serveur
 
         loadJSON((res) => {
@@ -120,9 +126,6 @@
             $.ajax({
                 url: `http://${conf.serveur.ip}:${conf.serveur.port}/annuaire`,
                 type: 'GET',
-                // data: {
-                //     recherche: message
-                // },
                 dataType: 'json',
                 success(data) {
                     $('.loader-tableau').hide();
@@ -134,16 +137,12 @@
                         const dateUpdate = site.UPDATE_IPV6 ? parsedDate(new Date(site.UPDATE_IPV6)) : '...';
                         const dateCreation = parsedDate(new Date(site.DATE_CREATION));
 
-
                         let contenu = "<tr><td>" + site.DOMAIN + "</td><td>" + !!site.IPV6 + "</td><td>" + !!site.IPV4 + "</td><td>" + dateCreation + "</td><td>" + dateUpdate + "</td></tr>";
                         $("tbody").append(contenu);
-
-                        // $("#displayResult").append("<p class='id_res'><a href='" + site.link + "'>" + site.title + "</a></br>" + site.description + "</br></p>")
 
                     });
 
                     $('.myTable').DataTable({"pageLength": 50});
-
 
                 },
                 error(data) {
@@ -154,12 +153,4 @@
         });
     });
 
-
 </script>
-
-<div class="foot">
-    ©Copyright BTS <a href=https://www.youtube.com/watch?v=dQw4w9WgXcQ"  target="_blank">Privacy Policy</a>
-</div>
-
-</body>
-</html>
