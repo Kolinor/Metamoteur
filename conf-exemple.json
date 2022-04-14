@@ -1,0 +1,14 @@
+{
+    "mariadb": {
+        "host": "x.x.x.x",
+        "port": 3306,
+        "user": "dev",
+        "password": "dev",
+        "db": "Metamoteur",
+        "connectionLimit": 10
+    },
+    "googleSearchApi": {
+        "key": "",
+        "numberOfResults": 30
+    }
+}
