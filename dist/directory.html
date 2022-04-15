@@ -140,7 +140,7 @@
                     $('.tableau').show();
 
                     data.forEach(site => {
-                        const dateUpdate = site.UPDATE_IPV6 ? parsedDate(new Date(site.UPDATE_IPV6)) : '...';
+                        const dateUpdate = site.UPDATE_IPV6 ? parsedDate(new Date(site.UPDATE_IPV6)) : '<span>&#8212;</span>';
                         const dateCreation = parsedDate(new Date(site.DATE_CREATION));
                         const cross = '<span>&#10539;</span>';
                         const valid = '<span>&#10003;</span>';
