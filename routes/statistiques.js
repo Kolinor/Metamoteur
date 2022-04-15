@@ -48,29 +48,52 @@ const getLastSitesIpv6 = async (req, res) => {
     }
 };
 
-const getLast6MonthsIpv6 = async (req, res) => {
+const getLastMonths = async (req, res) => {
     try {
-        const resultats = await query(req, {
+        const resultatsIpv6 = await query(req, {
             sql: 'select S.DATE_CREATION from SITES S where S.DATE_CREATION > curdate() - interval (dayofmonth(curdate()) - 1) day - interval 6 month and S.IPV6 = TRUE order by S.DATE_CREATION'
         });
-        const obj = {};
-        for (const resultat of resultats) {
-            const dateCreation = new Date(resultat.DATE_CREATION);
-            const month = dateCreation.getMonth();
-            obj[month] = (obj[month] || 0)+1;
-        }
-
+        const resultatsIpv4 = await query(req, {
+            sql: 'select S.DATE_CREATION from SITES S where S.DATE_CREATION > curdate() - interval (dayofmonth(curdate()) - 1) day - interval 6 month and S.IPV4 = TRUE order by S.DATE_CREATION'
+        });
+        const obj6 = {};
+        const obj4 = {};
         const d = new Date();
         const tabMonth = [];
+        const newTab6 = [];
+        const newTab4 = [];
+        for (const resultat of resultatsIpv6) {
+            const dateCreation = new Date(resultat.DATE_CREATION);
+            const month = dateCreation.getMonth();
+            obj6[month] = (obj6[month] || 0)+1;
+        }
+        for (const resultat of resultatsIpv4) {
+            const dateCreation = new Date(resultat.DATE_CREATION);
+            const month = dateCreation.getMonth();
+            obj4[month] = (obj4[month] || 0)+1;
+        }
         for(let i = 0; i < 6; i++){
             tabMonth[i] = (d.getMonth() - i) < 0 ? 12 + (d.getMonth() - i) : (d.getMonth() - i);
         }
-        const newTab = [];
         tabMonth.forEach(month => {
-            newTab.push(obj[month] || 0);
+            newTab6.push(obj6[month] || 0);
+            newTab4.push(obj4[month] || 0);
         });
+        const tab6 = newTab6.reverse();
+        const tab4 = newTab4.reverse();
 
-        res.send(newTab.reverse());
+        for (let i = 0; i < tab6.length; i++) {
+            let somme6 = 0;
+            let somme4 = 0;
+            for (let y = 0; y < i+1; y++) {
+                somme6 += tab6[y];
+                somme4 += tab4[y];
+            }
+            tab6[i] = somme6;
+            tab4[i] = somme4;
+        }
+
+        res.send({ipv6: tab6, ipv4: tab4});
     } catch (err) {
         console.error(err);
     }
@@ -89,7 +112,7 @@ router
     .get(getLastSitesIpv6);
 
 router
-    .route('/statistique/lastMonths/ipv6')
-    .get(getLast6MonthsIpv6);
+    .route('/statistique/lastMonths')
+    .get(getLastMonths);
 
 module.exports = router;

@@ -94,12 +94,8 @@
 
     $(document).ready(function () {
 
-
-        let tabMonth = [];
-        let tabIPv6 = [];
-
         // Récupération du parent
-
+        let tabMonth = [];
         // Envoi des données au serveur
         loadJSON((res) => {
             conf = JSON.parse(res);
@@ -118,7 +114,6 @@
                     $(".stat0").append("<p><h1>" + data.totalSites + "</h1>"+" sites référencés</p>")
                     $(".stat1").append("<p><h1>" + data.totalSitesIpv6 + "</h1>"+" sites IPv6 référencés</p>")
                     $(".stat2").append("<p><h1>" + data.pourcentageIpv6 + "%</h1>" + "de sites IPv6 dans notre base</p>")
-                    let tabIPv6 = [];
 
 
                 },
@@ -131,17 +126,15 @@
 
             // Envoi des données au serveur
             $.ajax({
-                url: `http://${conf.serveur.ip}:${conf.serveur.port}/statistique/lastMonths/ipv6`,
+                url: `http://${conf.serveur.ip}:${conf.serveur.port}/statistique/lastMonths`,
                 type: 'GET',
                 dataType: 'json',
                 success: function (data) {
 
                     console.log(data);
                     //console.log("success");
-
-
-                    tabIPv6 = data;
-
+                    let tabIPv6 = data.ipv6;
+                    let tabIPv4 = data.ipv4;
 
                     let monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 
@@ -154,8 +147,12 @@
                                 label: "Sites IPv6 référencés par mois",
                                 borderColor: "#9b3ecd",
                                 fill: false
-                            }
-                            ]
+                            }, {
+                                data: [tabIPv4[0], tabIPv4[1], tabIPv4[2], tabIPv4[3], tabIPv4[4], tabIPv4[5]],
+                                label: "Sites IPv4 référencés par mois",
+                                borderColor: "#08D8D8FF",
+                                fill: false
+                            }]
                         },
                         options: {
                             title: {
