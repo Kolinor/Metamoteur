@@ -170,13 +170,7 @@
                         $('#id_foot').addClass('foot_result')
                         $('#myLoader').hide();
 
-                        console.log(data);
-                        // console.log("success");
                         data.forEach(site => {
-                            console.log(site.title);
-                            console.log(site.link);
-                            console.log(site.description);
-
                             $("#displayResult").append("<p class='id_res'><a href='" + site.link + "' target=\"_blank\">" + site.title + "</a></br>" + site.description + "</br></p>")
                         });
                     },
