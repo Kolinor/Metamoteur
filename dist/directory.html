@@ -78,7 +78,7 @@
     </div>
 </div>
 
-<div class="foot1">
+<div class="foot_attente" id="id_foot">
     ©Copyright BTS <a href=https://www.youtube.com/watch?v=dQw4w9WgXcQ"  target="_blank">Privacy Policy</a>
 </div>
 
@@ -128,6 +128,8 @@
                 type: 'GET',
                 dataType: 'json',
                 success(data) {
+                    $('#id_foot').removeClass('foot_attente')
+                    $('#id_foot').addClass('foot_result')
                     $('.loader-tableau').hide();
                     $('.tableau').show();
                     console.log(data);

@@ -106,7 +106,7 @@
 
 </div>
 
-<div class="foot">
+<div class="foot_attente" id="id_foot">
     ©Copyright BTS <a href=https://www.youtube.com/watch?v=dQw4w9WgXcQ"  target="_blank">Privacy Policy</a>
 </div>
 
@@ -165,6 +165,9 @@
                     },
                     dataType: 'json',
                     success: function (data) {
+
+                        $('#id_foot').removeClass('foot_attente')
+                        $('#id_foot').addClass('foot_result')
                         $('#myLoader').hide();
 
                         console.log(data);
