@@ -124,6 +124,8 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function (data) {
+                    $('#id_foot').removeClass('foot_attente')
+                    $('#id_foot').addClass('foot_result')
                     let tabIPv6 = data.ipv6;
                     let tabIPv4 = data.ipv4;
 
