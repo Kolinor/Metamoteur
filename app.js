@@ -80,13 +80,13 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use('/', function(req, res) {
-    res.redirect('meta/meta.html');
-});
 app.use('/', recherchesRouter);
 app.use('/', recherchesRouterTest);
 app.use('/', annuaireRouterTest);
 app.use('/', statistiquesRouterTest);
+app.use('/', function(req, res) {
+    res.redirect('meta/meta.html');
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
